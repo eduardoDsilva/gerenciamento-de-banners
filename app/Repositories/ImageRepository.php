@@ -13,6 +13,7 @@ class ImageRepository
             $extension = $image->getClientOriginalExtension();
             $fileName = time() . random_int(100, 999) . '.' . $extension;
             $destinationPath = public_path('images/' . $type . '/');
+            $url = 'http://' . $_SERVER['HTTP_HOST'] . '/images/' . $type . '/' . $fileName;
             $fullPath = $destinationPath . $fileName;
             if (!file_exists($destinationPath)) {
                 File::makeDirectory($destinationPath, 0775);
@@ -20,7 +21,7 @@ class ImageRepository
             $image = Image::make($file)
                 ->encode('jpg');
             $image->save($fullPath, 100);
-            return $fullPath;
+            return $url;
         } else {
             return 'https://' . $_SERVER['HTTP_HOST'] . '/images/placeholder300x300.jpg';
         }

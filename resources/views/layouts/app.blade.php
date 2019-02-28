@@ -28,8 +28,8 @@
                 <a href="#!" class="brand-logo">Banners</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="sass.html">Listar</a></li>
-                    <li><a href="badges.html">Cadastrar</a></li>
+                    <li><a href="{{route('banners.index')}}">Listar</a></li>
+                    <li><a href="{{route('banners.create')}}">Cadastrar</a></li>
                     @if(Auth::check())
                         <li><a href="{{ route('logout') }}"
                                onclick="event.preventDefault();

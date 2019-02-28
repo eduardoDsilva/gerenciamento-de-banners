@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Banner;
 use Illuminate\Http\Request;
+use App\Repositories\ImageRepository;
 
 class BannerController extends Controller
 {
@@ -13,7 +15,8 @@ class BannerController extends Controller
      */
     public function index()
     {
-        //
+        $data = Banner::all();
+        return view('banners.index', compact('data'));
     }
 
     /**
@@ -23,7 +26,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        //
+        return view('banners.create');
     }
 
     /**
@@ -32,9 +35,15 @@ class BannerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, ImageRepository $repo)
     {
-        //
+        $dataForm = $request->except('img');
+        $banner = Banner::create($dataForm);
+        if ($request->hasFile('img')) {
+            $banner->url = $repo->saveImage($request->img, $banner->id, 'banners', 250);
+            $banner->save();
+        }
+        return redirect()->route('banners.index');
     }
 
     /**
