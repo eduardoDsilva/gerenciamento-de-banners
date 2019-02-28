@@ -17,7 +17,7 @@ class CreateBanners extends Migration
             $table->bigIncrements('id');
             $table->text('name');
             $table->longText('description')->nullable();
-            $table->text('url');
+            $table->text('url')->nullable();
             $table->timestamps();
         });
     }
