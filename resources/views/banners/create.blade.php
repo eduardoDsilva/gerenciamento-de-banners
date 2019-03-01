@@ -2,8 +2,13 @@
 
 @section('titulo', 'Cadastrar banner')
 
+@section('breadcrumb')
+    <a href="{{route('banners.index')}}" class="breadcrumb">Banners</a>
+    <a href="{{route('banners.create')}}" class="breadcrumb">Cadastrar banner</a>
+@endsection
+
 @section('content')
-<div class="container">
+
     <div class="card-panel">
         <div class="row">
             <form class="col s12" method="POST" action="{{route('banners.store')}}" enctype="multipart/form-data">
@@ -14,15 +19,16 @@
                         <div class="divider"></div>
                         <div class="section">
                             <div class="input-field col s12 m12 l12">
-                                <i class="material-icons prefix">location_on</i>
+                                <i class="material-icons prefix">short_text</i>
                                 <input required id="name" name="name" type="text" class="validate">
                                 <label for="name">Nome</label>
                             </div>
                         </div>
                         <div class="section">
                             <div class="input-field col s12 m12 l12">
-                                <i class="material-icons prefix">location_on</i>
-                                <textarea id="description" name="description" class="materialize-textarea" required></textarea>
+                                <i class="material-icons prefix">sort</i>
+                                <textarea id="description" name="description" class="materialize-textarea"
+                                          ></textarea>
                                 <label for="description">Descrição</label>
                             </div>
                         </div>
@@ -47,5 +53,4 @@
             </form>
         </div>
     </div>
-</div>
 @endsection

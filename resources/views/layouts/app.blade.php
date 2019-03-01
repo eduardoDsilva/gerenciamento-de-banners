@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -49,8 +50,8 @@
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="sass.html">Banners</a></li>
-        <li><a href="badges.html">Listar</a></li>
+        <li><a href="{{route('banners.index')}}">Banners</a></li>
+        <li><a href="{{route('banners.create')}}">Cadastrar</a></li>
         @if(Auth::check())
             <li><a href="{{ route('logout') }}"
                    onclick="event.preventDefault();
@@ -68,12 +69,50 @@
 </header>
 
 <main>
-    @yield('content')
+    <div class="container">
+        <h3>Sistema de Banners</h3>
+        <div class="divider"></div>
+
+        @include('layouts._breadcrumb')
+
+        @include('layouts._mensagem-erro')
+
+        @yield('content')
+    </div>
 </main>
 
 <script>
 
     M.AutoInit();
+
+    $(document).on('click', '.modal-trigger', function () {
+        console.log($(this).data('name'));
+        $('#id-edit').val($(this).data('id'));
+        $('#id-delete').val($(this).data('id'));
+        $('#id-relatorio').val($(this).data('id'));
+        $('#name-edit').val($(this).data('name'));
+        $('#name-delete').val($(this).data('name'));
+        $('#name-relatorio').val($(this).data('name'));
+    });
+
+
+    $("#crud-delete").click(function (e) {
+        e.preventDefault();
+        var form_action = $("#delete-item").find("form").attr("action");
+        var id = $("#delete-item").find("input[name='id']").val();
+        $.ajax({
+            dataType: 'json',
+            type: 'DELETE',
+            url: form_action,
+            data: {id: id}
+        }).done(function () {
+            $("#" + id).remove();
+            var Modalelem = document.querySelector('#delete-item');
+            var instance = M.Modal.getInstance(Modalelem);
+            instance.close();
+            M.toast({html: 'Deletado com sucesso!'});
+        });
+    });
 
 </script>
 

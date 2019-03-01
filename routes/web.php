@@ -13,6 +13,7 @@
 
 Auth::routes();
 
-Route::resource('banners', 'BannerController');
+Route::get('/', 'BannerController@index');
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::resource('banners', 'BannerController');
+Route::any('banners/filtrar', 'BannerController@filtrar')->name('banners.filtrar');
