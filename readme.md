@@ -17,6 +17,7 @@ Projeto desenvolvido em Laravel para o gerênciamento de banners de forma simple
 
 - Git clone :)
 - Tenha certeza que você possuí o composer 
+- Mande um "composer update" neles
 - Você também deve ter um ambiente de MySQL
 - Atenção! Atente-se de mudar as configurações do arquivo .env
 - Abra o seu projeto, um terminal e rode o comando "php artisan migrate". Mágica!
