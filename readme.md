@@ -1,4 +1,4 @@
-## Projeto de uma CRUD de Banners.
+## Projeto de um CRUD de Banners.
 
 Projeto desenvolvido em Laravel para o gerênciamento de banners de forma simples :).
 
